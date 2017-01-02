@@ -47,31 +47,39 @@ void Joystick::log() {
 }
 
 boolean Joystick::enter() {
-	if (!_initialized)
-		Serial.println("Please call the init method on this joystick");
+	_checkInitialized();
 	return analogRead(_swPin) < 100;
 }
 
 boolean Joystick::left() {
-	if (!_initialized)
-		Serial.println("Please call the init method on this joystick");
+	_checkInitialized();
 	return analogRead(_xPin) < 100;
 }
 
 boolean Joystick::right() {
-	if (!_initialized)
-		Serial.println("Please call the init method on this joystick");
+	_checkInitialized();
 	return analogRead(_xPin) > 900;
 }
 
 boolean Joystick::up() {
-	if (!_initialized)
-		Serial.println("Please call the init method on this joystick");
+	_checkInitialized();
 	return analogRead(_yPin) < 100;
 }
 
 boolean Joystick::down() {
+	_checkInitialized();
+	return analogRead(_yPin) > 900;
+}
+
+boolean Joystick::none() {
+	int x = analogRead(_xPin);
+	int y = analogRead(_yPin);
+	int sw = analogRead(_swPin);
+
+	return (x > 400 && x < 600 && y > 400 && y < 600 && sw > 900);
+}
+
+void Joystick::_checkInitialized() {
 	if (!_initialized)
 		Serial.println("Please call the init method on this joystick");
-	return analogRead(_yPin) > 900;
 }
