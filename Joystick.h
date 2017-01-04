@@ -1,17 +1,14 @@
 #ifndef Joystick_h
 #define Joystick_h
 
-#include "Arduino.h"
-
 class Joystick
 {
 	public:
 		Joystick();
 		Joystick(int xPin, int yPin, int swPin);
-		void init();
 		void debug();
+		void init();
 		void log();
-		String getPressedButton();
 		boolean enter();
 		boolean left();
 		boolean right();

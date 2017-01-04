@@ -13,23 +13,25 @@ Joystick::Joystick(int xPin, int yPin, int swPin) {
 	this->_swPin = swPin;
 }
 
+void Joystick::debug() {
+	this->_debug = true;
+}
+
 void Joystick::init() {
 	pinMode(_xPin, INPUT);
 	pinMode(_yPin, INPUT);
 	pinMode(_swPin, INPUT_PULLUP);
 	this->_initialized = true;
-}
 
-void Joystick::debug() {
-	this->_debug = true;
-
-	Serial.print("Initialized Joystick on ");
-	Serial.print("_xPin: ");
-	Serial.print(_xPin);
-	Serial.print(", _yPin: ");
-	Serial.print(_yPin);
-	Serial.print(", _swPin: ");
-	Serial.println(_swPin);
+	if (_debug) {
+		Serial.print("Initialized Joystick on ");
+		Serial.print("_xPin: ");
+		Serial.print(_xPin);
+		Serial.print(", _yPin: ");
+		Serial.print(_yPin);
+		Serial.print(", _swPin: ");
+		Serial.println(_swPin);
+	}
 }
 
 void Joystick::log() {
