@@ -48,32 +48,32 @@ void Joystick::log() {
 	Serial.println(sw);
 }
 
-boolean Joystick::enter() {
+bool Joystick::enter() {
 	_checkInitialized();
 	return analogRead(_swPin) < 100;
 }
 
-boolean Joystick::left() {
+bool Joystick::left() {
 	_checkInitialized();
 	return analogRead(_xPin) < 100;
 }
 
-boolean Joystick::right() {
+bool Joystick::right() {
 	_checkInitialized();
 	return analogRead(_xPin) > 900;
 }
 
-boolean Joystick::up() {
+bool Joystick::up() {
 	_checkInitialized();
 	return analogRead(_yPin) < 100;
 }
 
-boolean Joystick::down() {
+bool Joystick::down() {
 	_checkInitialized();
 	return analogRead(_yPin) > 900;
 }
 
-boolean Joystick::none() {
+bool Joystick::none() {
 	int x = analogRead(_xPin);
 	int y = analogRead(_yPin);
 	int sw = analogRead(_swPin);
